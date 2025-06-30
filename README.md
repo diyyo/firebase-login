@@ -1,6 +1,8 @@
 # No Server-side Static Website Login Page with Firebase Authentication
 A simple and secure login page for static websites powered by Firebase Authentication. No backend required!
 
+[**Live Preview**](https://diyyo.pages.dev/project/firebaselogin)
+
 ## Key Features
  1. Handle user sign-up, login, and session management using Firebase Auth.
 2. Leverage Firebase's secure token-based authentication system.
