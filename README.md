@@ -20,7 +20,7 @@ A simple and secure login page for static websites powered by Firebase Authentic
 1. Clone this project.
 2. Modify `config.js` file.
 3. If the icon does not appear, replace the [fontawesome.com](fontawesome.com) URL in `index.html` with your URL.
-4. Change as you like.
+4. Modify as you like.
 5. Deploy your project.
 
 **Let me know if you’d like to add features like real-time user status, logout flow, or UI enhancements!**
