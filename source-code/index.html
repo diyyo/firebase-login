@@ -1,0 +1,236 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/yakuhanjp@4.0.1/dist/css/yakuhanmp.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&family=Noto+Serif+JP:wght@400;500;700&family=Tiro+Tamil&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://dyo.pages.dev/diyyo.pages.dev/css/diyyo.common.css" />
+    <link rel="stylesheet" href="https://dyo.pages.dev/diyyo.pages.dev/css/diyyo.main.css" />
+    <link rel="stylesheet" href="https://dyo.pages.dev/diyyo.pages.dev/css/diyyo.blog.css" />
+    <link rel="stylesheet" href="https://dyo.pages.dev/diyyo.pages.dev/css/diyyo.form.css" />
+    <!-- change this url to your fontawesome kit -->
+    <script src="https://kit.fontawesome.com/YOUR-FONT-AWESOME_KIT" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-auth-compat.js"></script>
+    <style>
+        .l-header__img {
+            height: 60px;
+            width: 60px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .l-header__btn {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .top_onair {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .p-onair .p-onair__link {
+            font-size: 13px;
+            padding: 10px 0;
+        }
+
+        .login-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 0;
+            width: 220px;
+            text-decoration: none;
+            color: inherit;
+            background: #fff;
+            transition: background 0.2s;
+            border: 1px solid #eee;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background: #f5f5f5;
+        }
+
+        .login-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: #111;
+            min-width: 20px;
+        }
+
+        .login-btn p {
+            margin: 0;
+            width: 100%;
+            text-align: center;
+            padding-left: 24px;
+            padding-right: 8px;
+            box-sizing: border-box;
+        }
+
+        #socialMed.l-section.p-onair {
+            margin-bottom: 40px;
+        }
+
+        @media screen and (max-width: 900px) {
+            .l-header__img {
+                height: 40px;
+                width: 40px;
+                display: block;
+                margin: 0 auto;
+            }
+
+            .l-header__btn {
+                display: flex;
+                align-items: center;
+                height: auto;
+            }
+
+            #socialMed.l-section.p-onair {
+                margin-bottom: 20px;
+            }
+        }
+
+        .download-btn::before {
+            background: rgba(255, 255, 255, 0.274);
+        }
+
+        .list-logout-btn {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="l-wrapper" data-page="news_detail">
+        <div id="particles-js" class="l-bg"></div>
+
+        <!-- content -->
+        <div class="l-contents">
+            <main class="l-main">
+                <div class="l-in">
+                    <div class="l-in__container">
+                        <div class="l-in__header">
+                            <div class="l-in__ttl">
+                                <h2 class="l-in__ttl-inner">
+                                    <span
+                                        class="u-color-red">P</span><span>R</span><span>O</span><span>J</span><span>E</span><span>C</span><span>T</span>
+                                </h2>
+                            </div>
+                        </div>
+
+                        <div class="l-in__inner">
+                            <!-- form -->
+                            <div class="p-radio_form">
+                                <div class="l-wrapper" data-page="top">
+                                    <!-- content -->
+                                    <section id="socialMed" class="l-section p-onair" data-scroll>
+                                        <div class="p-onair__container">
+                                            <div class="p-radio_cap"">
+                                                <div class=" p-radio_cap">
+                                                <h3><span class="u-color-red">Login Page with Firebase
+                                                        Auth</span></h3>
+                                            </div>
+                                        </div>
+                                        <div class="text">
+                                            A simple and secure login page for static websites powered by Firebase
+                                            Authentication. No backend required!
+                                            <br><br>
+                                            Key Features: <br>
+                                            1. Handle user sign-up, login, and session management using Firebase Auth.
+                                            <br>
+                                            2. Leverage Firebase's secure token-based authentication system. <br>
+                                            3. Enable Google, Facebook, GitHub, email/password and others authentication
+                                            methods. <br>
+                                            4. Deploy instantly with Firebase Hosting for a live/production-ready demo.
+                                            <br><br>
+                                            Live Demo:
+                                        </div>
+                                        <!-- login-sec -->
+                                        <div class="list-login-btn" id="list-login-btn">
+                                            <ul class="top_onair">
+                                                <li>
+                                                    <div class="p-onair__img"></div>
+                                                    <a id="login-google" class="p-onair__link p-hero_bnr__link login-btn">
+                                                        <span class="login-icon"><i class="fab fa-google"
+                                                                style="color:#111;"></i></span>
+                                                        <p>Login with Google</p>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <div class="p-onair__img"></div>
+                                                    <a id="login-github" class="p-onair__link p-hero_bnr__link login-btn">
+                                                        <span class="login-icon"><i class="fab fa-github"
+                                                                style="color:#111;"></i></span>
+                                                        <p>Login with Github</p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- logout-sec -->
+                                        <div class="list-logout-btn" id="list-logout-btn">
+                                            <div class="p-radio_cap" style="margin-top: 40px; margin-bottom: 0;">
+                                                <div class="p-radio_cap">
+                                                    <h3><span class="u-color-red">Login Detail</span></h3>
+                                                </div>
+                                            </div>
+                                            <div class="login-detail">
+                                                <p>User: </p><p id="username">null</p><br>
+                                                <p>Email: </p><p id="user-email">null</p><br>
+                                                <p>Session ID: </p><p id="session-id">null</p><br>
+                                                <p>Provider: </p><p id="user-provider">null</p><br>
+                                                <p>UID: </p><p id="user-uid">null</p><br>
+                                                <p>Photo: </p><img id="user-photo" src="" alt="User Photo" style="max-width:40px;max-height:40px;border-radius:50%;background:#eee;" />
+                                            </div>
+                                            <ul class="top_onair">
+                                                <li>
+                                                    <div class="p-onair__img"></div>
+                                                    <a id="logout" class="p-onair__link p-hero_bnr__link login-btn">
+                                                        <span class="login-icon"><i class="fa-solid fa-right-from-bracket"
+                                                                style="color:#111;"></i></span>
+                                                        <p>Logout</p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </main>
+    </div>
+    </div>
+
+    <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        window.jQuery ||
+            document.write(
+                '<script src="https://dyo.pages.dev/diyyo.pages.dev/js/vender/jquery-3.6.0.min.js"><\/script>'
+            );
+    </script>
+    <script src="https://dyo.pages.dev/diyyo.pages.dev/js/vender/js-scroll-effect-module.js"></script>
+    <script src="https://dyo.pages.dev/diyyo.pages.dev/js/vender/particles.min.js"></script>
+    <script src="https://dyo.pages.dev/diyyo.pages.dev/js/diyyo.common.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="./config.js"></script>
+    <script src="./app.js"></script>
+</body>
+</html>
+
+<!-- Creative Commons License 2025 diyyo White CC0 1.0 Universal -->
