@@ -10,9 +10,9 @@ A simple and secure login page for static websites powered by Firebase Authentic
 4. Deploy instantly with Firebase Hosting for a live/production-ready demo.
 
 ## ⚙️ Tech Stack
--   Frontend: HTML, CSS, JavaScript
--   Firebase SDKs: Authentication, Hosting
--   Tools: Firebase CLI, Vanilla JS
+-   Frontend: HTML, CSS, JavaScript 
+-   Firebase SDKs: Authentication
+-   Tools: Firebase CLI
 
 💡 _Deployed via Firebase Hosting — just run `firebase deploy`! or You can use Github Pages..._
 
